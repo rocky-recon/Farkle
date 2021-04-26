@@ -1,2 +1,2 @@
-# Farkle
+# com.farkle.Farkle
 TLG Team

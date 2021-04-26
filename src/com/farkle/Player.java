@@ -1,3 +1,4 @@
+package com.farkle;
 
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class Player {
         System.out.print("Select game type: 1: One player 2: Two players 3: Survival mode");
         int gameType = in.nextInt();
         if ( gameType == 1){
-            System.out.println("Game type is One Player");
+            System.out.println("Game type is One com.farkle.Player");
             onePlayer();
             maxScore();
         } else if (gameType == 2){
@@ -31,7 +32,7 @@ public class Player {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter your name: ");
         String name = in.nextLine();
-        System.out.println("Player name is: " + name);
+        System.out.println("com.farkle.Player name is: " + name);
     }
     //if two player mode is selected this is called
     private static void twoPlayers() {
