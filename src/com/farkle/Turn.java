@@ -1,39 +1,40 @@
 package com.farkle;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
-public class Turn<diceFaceValue> extends Dice {
-    private int turnScore;
-    private Turn (){
+public class Turn extends Dice {
 
+    public Turn(int faceValue) {
+        super(faceValue);
     }
 
-//    Start a turn
-    public ArrayList<diceFaceValue> startingTurn = new ArrayList<diceFaceValue>();{
-    boolean initialRoll = true;
-    int MAX_NUMBER = 6;
-    int rollScore = Dice.diceFaceValue.size();
-    if (!initialRoll){
-                System.out.println("Your turn is about to begin");
-        for (int initiateTurn = 0; initiateTurn < MAX_NUMBER; initiateTurn ++){
-        int faceValue = Dice.diceFaceValue.get(initiateTurn);
-//      need to add score into this section
-        Integer turnScore = Dice.diceFaceValue.get(initiateTurn);
+    //    Roll Dice
+    public static ArrayList<Integer> rollDice(Player player, int faceValue) {
+        int MAX_ROLLS = 3;
+        ArrayList<Integer> diceRoll = new ArrayList<Integer>();
+        for (int roll = 0; roll < MAX_ROLLS; roll++)
+            diceFaceValue.size();
+        return diceRoll;
+    }
 
-        System.out.println((rollScore + 1) + " . "  + faceValue + " " + turnScore + " points");
-            }
+    //    validating roll
+    public static void validatingEachRoll(Player player, int faceValue) {
+        ArrayList<Integer> diceRoll = rollDice(player, faceValue);
+        validatingEachRoll(player, faceValue);
+    }
+
+    //    Roll again
+    public static void reRoll(Player player) {
+        int turnScore;
+        int MAX_NUM_DICES = 6;
+        for (int rollingDice = 0; rollingDice < MAX_NUM_DICES; rollingDice++) {
+            diceFaceValue.size();
         }
-//    }
-////    Roll Dice
-//    public static ArrayList <Integer> rollDice
-////    Dice selection
-////    public static ArrayList<Integer> rollDice (Player player, int rollScore){
-////        ArrayList<Integer> diceRolled = rollDice(player, rollScore);
-////        for (initialRoll = 0, initialRoll < rollScore, initialRoll ++){
-////
-////        }
-////    }
-//
-////    endTurn
-//
+        if (MAX_NUM_DICES > 0) {
+            diceFaceValue.size();
+        } else if (MAX_NUM_DICES < 0) {
+            turnScore = scoreCalculater.values;
+        }
+    }
 }
