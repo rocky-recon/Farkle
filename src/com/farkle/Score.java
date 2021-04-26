@@ -7,8 +7,8 @@ public class Score {
     //variables/fields
 
     //diceValues [], ArrayList?
-    int[] CurrentDiceValues= {1, 1, 1, 1, 1, 1};
-    int turnScore = 0;
+    public int[] CurrentDiceValues= {1, 1, 1, 1, 1, 1};
+    public int turnScore = 0;
     ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
 
 
