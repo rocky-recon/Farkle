@@ -1,28 +1,45 @@
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Dice {
-    private double diceNumber;
-    private Integer [] diceValue;
+    private String type;
+    private Integer points;
+    private ArrayList<Integer> scoreVariant;
+    private Integer faceValue;
+    private SecureRandom dieSR = new SecureRandom();
+    private boolean isSelected;
 
-
-    public Dice(double diceNumber, Integer[] diceValue) {
-        this.diceNumber = diceNumber;
-        this.diceValue = diceValue;
+    public Dice() {
+        int faceValue;
+        boolean isSelected;
     }
 
-    public double getDiceNumber() {
-        return diceNumber;
+    public Dice (Integer faceValue, boolean isSelected){
+        this.faceValue = faceValue;
+        this.isSelected = isSelected;
     }
 
-    public void setDiceNumber(double diceNumber) {
-        this.diceNumber = diceNumber;
+    public void rollDice () {
+       Integer randomInteger = 1 + dieSR.nextInt(faceValue);
     }
 
-    public Integer[] getDiceValue() {
-        return diceValue;
+    public Integer getFaceValue() {
+        return faceValue;
     }
 
-    public void setDiceValue(Integer[] diceValue) {
-        this.diceValue = diceValue;
+     public boolean isSelected() {
+        return isSelected;
     }
 
-//    endTurn() return totalScore += turnScore; begin turn() for next player
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+    //    endTurn() return totalScore += turnScore; begin turn() for next player
+    public Dice(String type, Integer totalAmout, ArrayList<Integer> scoreVariant){
+        this.type = type;
+        this.points = totalAmout;
+        this.scoreVariant = scoreVariant;
+    }
+
 }
