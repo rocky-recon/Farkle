@@ -24,7 +24,7 @@ public class Score {
         HashSet<Integer> setForFive = new HashSet<Integer>();
 
         if(diceValues.length == 1){
-            //Array of One must be an Add On to a previous set of Three Dice.
+            //Array of One must be an Add On to a previous set of Three Dice, A One for 100, or a Five for 50.
             for(ArrayList i:diceSets){
                 if(i.size() == 3){
                     int j = (int) i.get(0);
@@ -34,7 +34,15 @@ public class Score {
                         }else{
                             turnScore+= diceValues[0]*100;
                         }
+                    }else if(diceValues[0]== 1){
+                        turnScore+= 100;
+                    }else if(diceValues[0]== 5){
+                        turnScore+= 50;
                     }
+                }else if(diceValues[0]== 1){
+                    turnScore+= 100;
+                }else if(diceValues[0]== 5){
+                    turnScore+= 50;
                 }else{
                     return 0;
                 }
@@ -51,11 +59,26 @@ public class Score {
                         } else {
                             turnScore += diceValues[0] * 2 * 100;
                         }
+                    }else{
+                        for(Integer k:diceValues){
+                            if(k ==1){
+                                turnScore+=100;
+                            }else if(k==5){
+                                turnScore+=50;
+                            }
+                        }
                     }
-                } else {
+                } else for(Integer y:diceValues) {
+                    if (y == 1) {
+                    turnScore += 100;
+                } else if (y == 5) {
+                    turnScore += 50;
+                }
+                }else {
                     return 0;
                 }
             }
+
 
         }else if(diceValues.length == 3){
             //Accounting for 3 Additional dice to a set of 3? Would need to check previous Array, see if dice values
@@ -120,6 +143,6 @@ public class Score {
 
 
 
-        return 0;
+        return turnScore;
     }
 }
