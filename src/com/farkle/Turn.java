@@ -1,7 +1,9 @@
 package com.farkle;
 
 import java.util.ArrayList;
-import java.util.stream.IntStream;
+import com.farkle.Score;
+import com.farkle.Player;
+
 
 public class Turn extends Dice {
 
@@ -13,8 +15,8 @@ public class Turn extends Dice {
     public static ArrayList<Integer> rollDice(Player player, int faceValue) {
         int MAX_ROLLS = 3;
         ArrayList<Integer> diceRoll = new ArrayList<Integer>();
-        for (int roll = 0; roll < MAX_ROLLS; roll++)
-            diceFaceValue.size();
+        for (int roll = 0; roll < MAX_ROLLS; roll++){
+            diceFaceValue.size();}
         return diceRoll;
     }
 
@@ -34,7 +36,9 @@ public class Turn extends Dice {
         if (MAX_NUM_DICES > 0) {
             diceFaceValue.size();
         } else if (MAX_NUM_DICES < 0) {
-            turnScore = scoreCalculater.values;
+            turnScore = scoreCalculator(scoreCalculator.values);
         }
+        player.resetMAX_NUM_DICES ();
+        validatingEachRoll(player, MAX_NUM_DICES);
     }
 }
