@@ -6,6 +6,7 @@ public class Player {
 
     public static void main(String[] args) {
         startGame();
+        turnPrintEvents();
     }
     // this is called to have player enter game type, name, and score.
     private static void startGame() {
@@ -57,6 +58,19 @@ public class Player {
             System.out.println("You selected 15,000");
         }
     }
+
+    private static void turnPrintEvents(){
+        System.out.println("Current Player: " /*+*/);
+        System.out.println("Dice Roll: " /*+ diceFaceValue*/);
+        int die;
+        do{
+            Scanner in = new Scanner(System.in);
+            System.out.print("Enter Dice 1-6: ");
+            die = in.nextInt();
+        }while(die != 0);
+    }
+
+
     private static void endGame() {
 
 
