@@ -15,9 +15,12 @@ public class Player {
         RollingDice.add(5);
         RollingDice.add(6);
         ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        int turn = 1;
         ArrayList<Integer> previousDiceSet1 = new ArrayList<>();
+        ArrayList<Integer> previousDiceSet2 = new ArrayList<>();
         startGame();
-        turnPrintEvents();
+        turnPrintEvents( RollingDice, CurrentDiceValues, previousDiceSet1, previousDiceSet2, turn);
     }
     // this is called to have player enter game type, name, and score.
     private static void startGame() {
@@ -70,16 +73,12 @@ public class Player {
         }
     }
 
-    private static void turnPrintEvents(ArrayList<Integer> RollingDice, ArrayList<Integer> previousDiceSet1){
+    private static void turnPrintEvents(ArrayList<Integer> RollingDice, ArrayList<Integer> CurrentDiceValues, ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2, int turn){
 
         System.out.println("Current Player: " /*+*/);
         System.out.println("Dice Roll: " /*+ diceFaceValue*/);
         int die;
         do{
-            Scanner in = new Scanner(System.in);
-            System.out.print("Enter Dice 1-6: ");
-            die = in.nextInt();
-
             System.out.println("Input a Die you want to keep. To not take any Die, type 0.");
             Scanner in = new Scanner(System.in);
             System.out.print("Enter Dice 1-6: ");
@@ -87,13 +86,28 @@ public class Player {
             for(int i = 0; i<RollingDice.size(); i++){
                 int RollingIndex = RollingDice.get(i);
                 if(die == RollingIndex){
-                    previousDiceSet1.add(RollingDice.get(i));
+                    CurrentDiceValues.add(RollingDice.get(i));
                     RollingDice.remove(i);
                     System.out.println(RollingDice);
-                    System.out.println(previousDiceSet1);
+                    System.out.println(CurrentDiceValues);
                 }
             }
         }while(die != 0);
+        //calculate score
+        if(turn == 1){
+            for(int i =0; i<CurrentDiceValues.size(); i++){
+                previousDiceSet1.add(CurrentDiceValues.get(i));
+            }
+            CurrentDiceValues.clear();
+        }else if(turn == 2){
+            for(int i =0; i<CurrentDiceValues.size(); i++){
+                previousDiceSet2.add(CurrentDiceValues.get(i));
+            }
+            CurrentDiceValues.clear();
+        }
+        System.out.println("Previous Dice set 1: " + previousDiceSet1);
+        System.out.println("Previous Dice set 2: " + previousDiceSet2);
+        System.out.println("Current Dice set: " + CurrentDiceValues);
     }
 
 
