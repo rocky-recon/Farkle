@@ -7,14 +7,14 @@ public class Score {
     //variables/fields
 
     //diceValues [], ArrayList?
-    public ArrayList<Integer> CurrentDiceValues= new ArrayList<>();
+    public ArrayList<Integer> currentDiceValues = new ArrayList<>();
     public static int turnScore = 0;
-    ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+    ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
 
 
-    Score(ArrayList<Integer> currentDiceValues, ArrayList<ArrayList<Integer>> PreviousDiceSets){
-        this.CurrentDiceValues = currentDiceValues;
-        this.PreviousDiceSets = PreviousDiceSets;
+    Score(ArrayList<Integer> currentDiceValues, ArrayList<ArrayList<Integer>> previousDiceSets){
+        this.currentDiceValues = currentDiceValues;
+        this.previousDiceSets = previousDiceSets;
 
     }
 
@@ -25,11 +25,11 @@ public class Score {
 
 
     public ArrayList<Integer> getCurrentDiceValues() {
-        return CurrentDiceValues;
+        return currentDiceValues;
     }
 
     public void setCurrentDiceValues(ArrayList<Integer> currentDiceValues) {
-        this.CurrentDiceValues = currentDiceValues;
+        this.currentDiceValues = currentDiceValues;
     }
 
     public int getTurnScore() {
@@ -41,11 +41,11 @@ public class Score {
     }
 
     public ArrayList<ArrayList<Integer>> getPreviousDiceSets() {
-        return PreviousDiceSets;
+        return previousDiceSets;
     }
 
-    public void setPreviousDiceSets(ArrayList<ArrayList<Integer>> PreviousDiceSets) {
-        this.PreviousDiceSets = PreviousDiceSets;
+    public void setPreviousDiceSets(ArrayList<ArrayList<Integer>> previousDiceSets) {
+        this.previousDiceSets = previousDiceSets;
     }
 
     //methods
@@ -54,60 +54,60 @@ public class Score {
 
 
 
-    public int scoreCalculator(ArrayList<Integer> CurrentDiceValues, ArrayList<ArrayList<Integer>> PreviousDiceSets){
+    public int scoreCalculator(ArrayList<Integer> currentDiceValues, ArrayList<ArrayList<Integer>> previousDiceSets){
         //if receiving an Arraylist, break into separate arrays (?)
         HashSet<Integer> setForSix = new HashSet<Integer>();
         HashSet<Integer> setForFive = new HashSet<Integer>();
 
-        if(CurrentDiceValues.size() == 1){
+        if(currentDiceValues.size() == 1){
             //Array of One must be an Add On to a previous set of Three Dice, A One for 100, or a Five for 50.
-            if(PreviousDiceSets.size()>0){
-                for(ArrayList i: PreviousDiceSets){
+            if(previousDiceSets.size()>0){
+                for(ArrayList i: previousDiceSets){
                     if(i.size() == 3){
                         int j = (int) i.get(0);
-                        if( j == CurrentDiceValues.get(0)){
-                            if(CurrentDiceValues.get(0) == 1){
+                        if( j == currentDiceValues.get(0)){
+                            if(currentDiceValues.get(0) == 1){
                                 turnScore+= 300;
                             }else{
-                                turnScore+= CurrentDiceValues.get(0)*100;
+                                turnScore+= currentDiceValues.get(0)*100;
                             }
-                        }else if(CurrentDiceValues.get(0)== 1){
+                        }else if(currentDiceValues.get(0)== 1){
                             turnScore+= 100;
-                        }else if(CurrentDiceValues.get(0)== 5){
+                        }else if(currentDiceValues.get(0)== 5){
                             turnScore+= 50;
                         }
-                    }else if(CurrentDiceValues.get(0)== 1){
+                    }else if(currentDiceValues.get(0)== 1){
                         turnScore+= 100;
-                    }else if(CurrentDiceValues.get(0)== 5){
+                    }else if(currentDiceValues.get(0)== 5){
                         turnScore+= 50;
                     }else{
                         return 0;
                     }
                 }
-            }else if(CurrentDiceValues.get(0)== 1){
+            }else if(currentDiceValues.get(0)== 1){
                 turnScore+= 100;
-            }else if(CurrentDiceValues.get(0)== 5){
+            }else if(currentDiceValues.get(0)== 5){
                 turnScore+= 50;
             }else{
                 return 0;
             }
 
 
-        }else if(CurrentDiceValues.size() == 2){
+        }else if(currentDiceValues.size() == 2){
             //Array of Two must be an Add On to a previous set of Three Dice, or a combination of Ones and Fives.
             //Array of an add on and a One or Five do not score correctly.
-            if(PreviousDiceSets.size()>0){
-                for(ArrayList i: PreviousDiceSets) {
+            if(previousDiceSets.size()>0){
+                for(ArrayList i: previousDiceSets) {
                     if (i.size() == 3) {
                         int j = (int) i.get(0);
-                        if (j == CurrentDiceValues.get(0)) {
-                            if (CurrentDiceValues.get(0) == 1) {
+                        if (j == currentDiceValues.get(0)) {
+                            if (currentDiceValues.get(0) == 1) {
                                 turnScore += 600;
                             } else {
-                                turnScore += CurrentDiceValues.get(0) * 2 * 100;
+                                turnScore += currentDiceValues.get(0) * 2 * 100;
                             }
                         }else{
-                            for(Integer k:CurrentDiceValues){
+                            for(Integer k:currentDiceValues){
                                 if(k ==1){
                                     turnScore+=100;
                                 }else if(k==5){
@@ -115,7 +115,7 @@ public class Score {
                                 }
                             }
                         }
-                    } else for(Integer y:CurrentDiceValues) {
+                    } else for(Integer y:currentDiceValues) {
                         if (y == 1) {
                             turnScore += 100;
                         } else if (y == 5) {
@@ -127,7 +127,7 @@ public class Score {
 //                }
                 }
             }else{
-                for(Integer y:CurrentDiceValues) {
+                for(Integer y:currentDiceValues) {
                     if (y == 1) {
                         turnScore += 100;
                     } else if (y == 5) {
@@ -138,26 +138,26 @@ public class Score {
 
 
 
-        }else if(CurrentDiceValues.size() == 3){
+        }else if(currentDiceValues.size() == 3){
             //Accounting for 3 Additional dice to a set of 3? Would need to check previous Array, see if dice values
             //were equal.
             //need to account for Ones and Fives.
-            if(CurrentDiceValues.get(0) == 1){
+            if(currentDiceValues.get(0) == 1){
                 turnScore+=300;
             }else{
-                turnScore+= CurrentDiceValues.get(0)*100;
+                turnScore+= currentDiceValues.get(0)*100;
             }
 
-        }else if(CurrentDiceValues.size() == 4){
+        }else if(currentDiceValues.size() == 4){
             //four of a kind
             turnScore += 1000;
 
-        }else if(CurrentDiceValues.size() == 5){
-            setForFive.add(CurrentDiceValues.get(0));
-            setForFive.add(CurrentDiceValues.get(1));
-            setForFive.add(CurrentDiceValues.get(2));
-            setForFive.add(CurrentDiceValues.get(3));
-            setForFive.add(CurrentDiceValues.get(4));
+        }else if(currentDiceValues.size() == 5){
+            setForFive.add(currentDiceValues.get(0));
+            setForFive.add(currentDiceValues.get(1));
+            setForFive.add(currentDiceValues.get(2));
+            setForFive.add(currentDiceValues.get(3));
+            setForFive.add(currentDiceValues.get(4));
 
             if(setForFive.size() == 1){
                 //five of a kind
@@ -169,14 +169,14 @@ public class Score {
             }
 
 
-        }else if(CurrentDiceValues.size() == 6){
+        }else if(currentDiceValues.size() == 6){
             //convert into hashset
-            setForSix.add(CurrentDiceValues.get(0));
-            setForSix.add(CurrentDiceValues.get(1));
-            setForSix.add(CurrentDiceValues.get(2));
-            setForSix.add(CurrentDiceValues.get(3));
-            setForSix.add(CurrentDiceValues.get(4));
-            setForSix.add(CurrentDiceValues.get(5));
+            setForSix.add(currentDiceValues.get(0));
+            setForSix.add(currentDiceValues.get(1));
+            setForSix.add(currentDiceValues.get(2));
+            setForSix.add(currentDiceValues.get(3));
+            setForSix.add(currentDiceValues.get(4));
+            setForSix.add(currentDiceValues.get(5));
 
             if(setForSix.size() == 1){
                 //six of a kind
