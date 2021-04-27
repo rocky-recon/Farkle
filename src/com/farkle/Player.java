@@ -1,10 +1,21 @@
 package com.farkle;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
 
+
     public static void main(String[] args) {
+        ArrayList<Integer> RollingDice = new ArrayList<>(6);
+        RollingDice.add(1);
+        RollingDice.add(2);
+        RollingDice.add(3);
+        RollingDice.add(4);
+        RollingDice.add(5);
+        RollingDice.add(6);
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> previousDiceSet1 = new ArrayList<>();
         startGame();
         turnPrintEvents();
     }
@@ -59,7 +70,8 @@ public class Player {
         }
     }
 
-    private static void turnPrintEvents(){
+    private static void turnPrintEvents(ArrayList<Integer> RollingDice, ArrayList<Integer> previousDiceSet1){
+
         System.out.println("Current Player: " /*+*/);
         System.out.println("Dice Roll: " /*+ diceFaceValue*/);
         int die;
@@ -67,6 +79,20 @@ public class Player {
             Scanner in = new Scanner(System.in);
             System.out.print("Enter Dice 1-6: ");
             die = in.nextInt();
+
+            System.out.println("Input a Die you want to keep. To not take any Die, type 0.");
+            Scanner in = new Scanner(System.in);
+            System.out.print("Enter Dice 1-6: ");
+            die = in.nextInt();
+            for(int i = 0; i<RollingDice.size(); i++){
+                int RollingIndex = RollingDice.get(i);
+                if(die == RollingIndex){
+                    previousDiceSet1.add(RollingDice.get(i));
+                    RollingDice.remove(i);
+                    System.out.println(RollingDice);
+                    System.out.println(previousDiceSet1);
+                }
+            }
         }while(die != 0);
     }
 
