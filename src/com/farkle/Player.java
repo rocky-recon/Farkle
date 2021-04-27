@@ -21,6 +21,7 @@ public class Player {
         ArrayList<Integer> previousDiceSet2 = new ArrayList<>();
         startGame();
         turnPrintEvents( RollingDice, CurrentDiceValues, previousDiceSet1, previousDiceSet2, turn);
+        System.out.println("Turn Score: " + Score.turnScore);
     }
     // this is called to have player enter game type, name, and score.
     private static void startGame() {
@@ -88,12 +89,13 @@ public class Player {
                 if(die == RollingIndex){
                     CurrentDiceValues.add(RollingDice.get(i));
                     RollingDice.remove(i);
-                    System.out.println(RollingDice);
-                    System.out.println(CurrentDiceValues);
+                    System.out.println("Rolling Dice: " + RollingDice);
+                    System.out.println("Current chosen Dice: " + CurrentDiceValues);
                 }
             }
         }while(die != 0);
         //calculate score
+        //System.out.println(Score.turnScore);
         if(turn == 1){
             for(int i =0; i<CurrentDiceValues.size(); i++){
                 previousDiceSet1.add(CurrentDiceValues.get(i));
