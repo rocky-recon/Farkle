@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
-
-
+    static private String playerOneName;
+    static private String playerTwoName;
     public static void main(String[] args) {
         ArrayList<Integer> RollingDice = new ArrayList<>(6);
         RollingDice.add(1);
@@ -47,17 +47,18 @@ public class Player {
     private static void onePlayer() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter your name: ");
-        String name = in.nextLine();
-        System.out.println("com.farkle.Player name is: " + name);
+        playerOneName = in.nextLine();
+        System.out.println("Player name is: " + playerOneName);
     }
+
     //if two player mode is selected this is called
     private static void twoPlayers() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter first player's name: ");
-        String name = in.nextLine();
+        playerOneName = in.nextLine();
         System.out.print("Enter second player's name: ");
-        String nameTwo = in.nextLine();
-        System.out.println("Players are : " + name + " and "+ nameTwo);
+        playerTwoName = in.nextLine();
+        System.out.println("Players are : " + playerOneName + " and " + playerTwoName);
     }
     // player or players select score they must reach in order to win, survival mode has no score to reach in order to win.
     private static void maxScore() {
@@ -76,7 +77,7 @@ public class Player {
 
     private static void turnPrintEvents(ArrayList<Integer> RollingDice, ArrayList<Integer> CurrentDiceValues, ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2, int turn){
 
-        System.out.println("Current Player: " /*+*/);
+        System.out.println("Current Player: " + playerOneName);
         System.out.println("Dice Roll: " /*+ diceFaceValue*/);
         int die;
         do{
