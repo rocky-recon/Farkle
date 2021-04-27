@@ -12,7 +12,42 @@ public class Score {
     ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
 
 
+    Score(int[] currentDiceValues, ArrayList<ArrayList<Integer>> PreviousDiceSets){
+        this.CurrentDiceValues = currentDiceValues;
+        this.PreviousDiceSets = PreviousDiceSets;
+
+    }
+
+//    Score(int[] currentDiceValues){
+//        this.PreviousDiceSets = PreviousDiceSets;
+//    }
     //getters and setters
+
+
+
+    public int[] getCurrentDiceValues() {
+        return CurrentDiceValues;
+    }
+
+    public void setCurrentDiceValues(int[] currentDiceValues) {
+        this.CurrentDiceValues = currentDiceValues;
+    }
+
+    public int getTurnScore() {
+        return turnScore;
+    }
+
+    public void setTurnScore(int turnScore) {
+        this.turnScore = turnScore;
+    }
+
+    public ArrayList<ArrayList<Integer>> getPreviousDiceSets() {
+        return PreviousDiceSets;
+    }
+
+    public void setPreviousDiceSets(ArrayList<ArrayList<Integer>> PreviousDiceSets) {
+        this.PreviousDiceSets = PreviousDiceSets;
+    }
 
     //methods
 
@@ -20,7 +55,7 @@ public class Score {
 
 
 
-    public int scoreCalculator(int[] CurrentDiceValues){
+    public int scoreCalculator(int[] CurrentDiceValues, ArrayList<ArrayList<Integer>> PreviousDiceSets){
         //if receiving an Arraylist, break into separate arrays (?)
         HashSet<Integer> setForSix = new HashSet<Integer>();
         HashSet<Integer> setForFive = new HashSet<Integer>();
@@ -61,6 +96,7 @@ public class Score {
 
         }else if(CurrentDiceValues.length == 2){
             //Array of Two must be an Add On to a previous set of Three Dice, or a combination of Ones and Fives.
+            //Array of an add on and a One or Five do not score correctly.
             if(PreviousDiceSets.size()>0){
                 for(ArrayList i: PreviousDiceSets) {
                     if (i.size() == 3) {
@@ -107,66 +143,61 @@ public class Score {
             //Accounting for 3 Additional dice to a set of 3? Would need to check previous Array, see if dice values
             //were equal.
             //need to account for Ones and Fives.
-                if(CurrentDiceValues[0] == 1){
-                    turnScore+=300;
-                }else{
-                    turnScore+= CurrentDiceValues[0]*100;
-                }
+            if(CurrentDiceValues[0] == 1){
+                turnScore+=300;
+            }else{
+                turnScore+= CurrentDiceValues[0]*100;
+            }
 
-            }else if(CurrentDiceValues.length == 4){
-                //four of a kind
-                turnScore += 1000;
+        }else if(CurrentDiceValues.length == 4){
+            //four of a kind
+            turnScore += 1000;
 
-            }else if(CurrentDiceValues.length == 5){
-                setForFive.add(CurrentDiceValues[0]);
-                setForFive.add(CurrentDiceValues[1]);
-                setForFive.add(CurrentDiceValues[2]);
-                setForFive.add(CurrentDiceValues[3]);
-                setForFive.add(CurrentDiceValues[4]);
+        }else if(CurrentDiceValues.length == 5){
+            setForFive.add(CurrentDiceValues[0]);
+            setForFive.add(CurrentDiceValues[1]);
+            setForFive.add(CurrentDiceValues[2]);
+            setForFive.add(CurrentDiceValues[3]);
+            setForFive.add(CurrentDiceValues[4]);
 
-                if(setForFive.size() == 1){
-                    //five of a kind
-                    turnScore+= 4000;
-                }else{
-                    //if (setForFive.size() == 2)
-                    //Full house
-                    turnScore+= 1000;
-                }
-
-
-            }else if(CurrentDiceValues.length == 6){
-                //convert into hashset
-                setForSix.add(CurrentDiceValues[0]);
-                setForSix.add(CurrentDiceValues[1]);
-                setForSix.add(CurrentDiceValues[2]);
-                setForSix.add(CurrentDiceValues[3]);
-                setForSix.add(CurrentDiceValues[4]);
-                setForSix.add(CurrentDiceValues[5]);
-
-                if(setForSix.size() == 1){
-                    //six of a kind
-                    turnScore+= 6000;
-                }else if(setForSix.size() == 3){
-                    //three pair
-                    turnScore+= 1500;
-                }else if(setForSix.size() == 6){
-                    //1-6 straight
-                    turnScore+= 1500;
-                }else{
-                    //if(arrayOfSix.size() == 2)
-                    //two three-of-a-kind
-                    for(Integer i:setForSix){
-                        turnScore += i*100;
-                    }
-                }
-
+            if(setForFive.size() == 1){
+                //five of a kind
+                turnScore+= 4000;
+            }else{
+                //if (setForFive.size() == 2)
+                //Full house
+                turnScore+= 1000;
             }
 
 
+        }else if(CurrentDiceValues.length == 6){
+            //convert into hashset
+            setForSix.add(CurrentDiceValues[0]);
+            setForSix.add(CurrentDiceValues[1]);
+            setForSix.add(CurrentDiceValues[2]);
+            setForSix.add(CurrentDiceValues[3]);
+            setForSix.add(CurrentDiceValues[4]);
+            setForSix.add(CurrentDiceValues[5]);
 
+            if(setForSix.size() == 1){
+                //six of a kind
+                turnScore+= 6000;
+            }else if(setForSix.size() == 3){
+                //three pair
+                turnScore+= 1500;
+            }else if(setForSix.size() == 6){
+                //1-6 straight
+                turnScore+= 3000;
+            }else{
+                //if(arrayOfSix.size() == 2)
+                //two three-of-a-kind
+                for(Integer i:setForSix){
+                    turnScore += i*100;
+                }
+            }
 
-
-
+        }
         return turnScore;
     }
+
 }
