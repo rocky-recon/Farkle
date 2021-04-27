@@ -7,6 +7,7 @@ public class Player {
     static private String playerOneName;
     static private String playerTwoName;
     public static void main(String[] args) {
+        //This is a placeholder ArrayList. Needs to be replaced with the Actual Random Dice ArrayList.
         ArrayList<Integer> rollingDice = new ArrayList<>(6);
         rollingDice.add(1);
         rollingDice.add(2);
