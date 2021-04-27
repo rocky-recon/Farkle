@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Dice {
     public static void main(String[] args) {
-        ArrayList<Integer> RollingDice = new ArrayList<>();
+        ArrayList<Integer> rollingDice = new ArrayList<>();
         Random die = new Random();
         int die1 = die.nextInt(6);
         int die2 = die.nextInt(6);
@@ -21,6 +21,6 @@ public class Dice {
         RollingDice.add(die4);
         RollingDice.add(die5);
         RollingDice.add(die5);
-        System.out.println("Your dice values are " + RollingDice);
+        System.out.println("Your dice values are " + rollingDice);
     }
 }
