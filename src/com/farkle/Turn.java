@@ -5,11 +5,9 @@ import com.farkle.Score;
 import com.farkle.Player;
 
 
-public class Turn extends Dice {
-
-    public Turn(int faceValue) {
-        super(faceValue);
-    }
+public class Turn extends  Dice{
+    public Turn(ArrayList<Integer> currentDiceValues, int[] faceValue) {
+        super(currentDiceValues, faceValue);}
 
     //    Roll Dice
     public static ArrayList<Integer> rollDice(Player player, int faceValue) {
@@ -36,9 +34,9 @@ public class Turn extends Dice {
         if (MAX_NUM_DICES > 0) {
             diceFaceValue.size();
         } else if (MAX_NUM_DICES < 0) {
-           // turnScore = scoreCalculator(scoreCalculator.values);
+            // turnScore = scoreCalculator(scoreCalculator.values);
         }
-       // player.resetMAX_NUM_DICES ();
+        // player.resetMAX_NUM_DICES ();
         validatingEachRoll(player, MAX_NUM_DICES);
     }
 }
