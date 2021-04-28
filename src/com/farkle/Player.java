@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Player {
     static private String playerOneName;
     static private String playerTwoName;
-
     static private int selectedScore;
     int turnCount = 0;
     ArrayList<Integer> currentDiceValues = new ArrayList<>();
@@ -134,15 +133,16 @@ public class Player {
 
 
     private static void endGame() {
-//        int n = 3;
-//        ArrayList<Integer> farkleList = new ArrayList<Integer>(n);
-//        if (Score.turnScore == 0){
-//            for (int i = 1; i <= n ; i++){
-//                farkleList.add(i);
-//            }if (farkleList.size() == 3) {
-//                System.out.println("Three Farkles have been reached. You lose.");
-//            }
-//        } else if ()
+        int n = 3;
+        ArrayList<Integer> farkleList = new ArrayList<Integer>(n);
+        if (Score.turnScore == 0){
+            for (int i = 1; i <= n ; i++){
+                farkleList.add(i);
+            }if (farkleList.size() == 3) {
+                System.out.println("Three Farkles have been reached. You lose.");
+
+            }
+        } else if ( )
 
 
 
