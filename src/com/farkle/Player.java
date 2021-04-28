@@ -1,7 +1,6 @@
 package com.farkle;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Player {
@@ -22,15 +21,11 @@ public class Player {
     public static void main(String[] args) {
         interact();
     }
+
+
     private static void interact(){
         //This is a placeholder ArrayList. Needs to be replaced with the Actual Random Dice ArrayList.
-        ArrayList<Integer> rollingDice = new ArrayList<>(6);
-        rollingDice.add(1);
-        rollingDice.add(1);
-        rollingDice.add(1);
-        rollingDice.add(4);
-        rollingDice.add(5);
-        rollingDice.add(6);
+
         ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
         ArrayList<Integer> currentDiceValues = new ArrayList<>();
         int turnCount = 0;
@@ -39,7 +34,7 @@ public class Player {
         ArrayList<Integer> previousDiceSet2 = new ArrayList<>();
         Score score = new Score(currentDiceValues, previousDiceSets);
         startGame();
-        System.out.println(turnPrintEvents(score, rollingDice, currentDiceValues, previousDiceSet1, previousDiceSet2, previousDiceSets, turnCount, totalFarkleCount));
+        System.out.println(turnPrintEvents(score, rolledDice(), currentDiceValues, previousDiceSet1, previousDiceSet2, previousDiceSets, turnCount, totalFarkleCount));
         //System.out.println("Turn Score: " + score.scoreCalculator(currentDiceValues, previousDiceSets));
         endGame();
     }
@@ -93,6 +88,16 @@ public class Player {
         } else if (selectedScore == 3){
             System.out.println("You selected 15,000");
         }
+    }
+    private static ArrayList<Integer> rolledDice(){
+        ArrayList<Integer> rollingDice = new ArrayList<>(6);
+        rollingDice.add(1);
+        rollingDice.add(1);
+        rollingDice.add(1);
+        rollingDice.add(4);
+        rollingDice.add(5);
+        rollingDice.add(6);
+        return rollingDice;
     }
 
     private static int turnPrintEvents(Score score, ArrayList<Integer> rollingDice, ArrayList<Integer> currentDiceValues,
