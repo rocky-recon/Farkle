@@ -1,11 +1,13 @@
 package com.farkle;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Player {
     static private String playerOneName;
     static private String playerTwoName;
+    static private int selectedScore;
     public static void main(String[] args) {
         //This is a placeholder ArrayList. Needs to be replaced with the Actual Random Dice ArrayList.
         ArrayList<Integer> rollingDice = new ArrayList<>(6);
@@ -65,13 +67,12 @@ public class Player {
     private static void maxScore() {
         Scanner in = new Scanner(System.in);
         System.out.print("Select points need to win: 1: 5,000 2: 10,000 3: 15,000");
-        int score = in.nextInt();
-        if ( score == 1){
+        selectedScore = in.nextInt();
+        if ( selectedScore == 1){
             System.out.println("You selected 5,000");
-
-        } else if (score == 2){
+        } else if (selectedScore == 2){
             System.out.println("You selected 10,000");
-        } else if (score == 3){
+        } else if (selectedScore == 3){
             System.out.println("You selected 15,000");
         }
     }
@@ -116,12 +117,23 @@ public class Player {
 
 
     private static void endGame() {
+        int n = 3;
+        ArrayList<Integer> farkleList = new ArrayList<Integer>(n);
+        if (Score.turnScore == 0){
+            for (int i = 1; i <= n ; i++){
+                farkleList.add(i);
+            }if (farkleList.size() == 3) {
+                System.out.println("Three Farkles have been reached. You lose.");
+            }
+        } else if ()
 
 
 
+
+
+        }
     }
 
-}
 
 
 
