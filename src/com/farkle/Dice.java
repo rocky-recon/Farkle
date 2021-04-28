@@ -15,12 +15,12 @@ public class Dice {
         int die5 = die.nextInt(6);
         int die6 = die.nextInt(6);
 
-        RollingDice.add(die1);
-        RollingDice.add(die2);
-        RollingDice.add(die3);
-        RollingDice.add(die4);
-        RollingDice.add(die5);
-        RollingDice.add(die5);
+        rollingDice.add(die1);
+        rollingDice.add(die2);
+        rollingDice.add(die3);
+        rollingDice.add(die4);
+        rollingDice.add(die5);
+        rollingDice.add(die5);
         System.out.println("Your dice values are " + rollingDice);
     }
 }
