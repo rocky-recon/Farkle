@@ -1,28 +1,39 @@
 package com.farkle;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
     static private String playerOneName;
     static private String playerTwoName;
     public static void main(String[] args) {
-        ArrayList<Integer> RollingDice = new ArrayList<>(6);
-        RollingDice.add(1);
-        RollingDice.add(2);
-        RollingDice.add(3);
-        RollingDice.add(4);
-        RollingDice.add(5);
-        RollingDice.add(6);
-        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
-        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
-        int turn = 1;
+        //This is a placeholder ArrayList. Needs to be replaced with the Actual Random Dice ArrayList.
+        ArrayList<Integer> rollingDice = new ArrayList<>();
+        Random die = new Random();
+        int die1 = die.nextInt(6);
+        int die2 = die.nextInt(6);
+        int die3 = die.nextInt(6);
+        int die4 = die.nextInt(6);
+        int die5 = die.nextInt(6);
+        int die6 = die.nextInt(6);
+
+        rollingDice.add(die1);
+        rollingDice.add(die2);
+        rollingDice.add(die3);
+        rollingDice.add(die4);
+        rollingDice.add(die5);
+        rollingDice.add(die5);
+//        System.out.println("Your dice values are " + rollingDice);
+
+        ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
+        ArrayList<Integer> currentDiceValues = new ArrayList<>();
+        int [] turn = {1, 2, 3};
         ArrayList<Integer> previousDiceSet1 = new ArrayList<>();
         ArrayList<Integer> previousDiceSet2 = new ArrayList<>();
         startGame();
-        turnPrintEvents( RollingDice, CurrentDiceValues, previousDiceSet1, previousDiceSet2, turn);
-        System.out.println("Turn Score: " + Score.turnScore);
-    }
+        turnPrintEvents( rollingDice, currentDiceValues, previousDiceSet1, previousDiceSet2, turn);
+        System.out.println("Turn Score: " + Score.turnScore);}
     // this is called to have player enter game type, name, and score.
     private static void startGame() {
        Scanner in = new Scanner(System.in);
@@ -75,42 +86,44 @@ public class Player {
         }
     }
 
-    private static void turnPrintEvents(ArrayList<Integer> RollingDice, ArrayList<Integer> CurrentDiceValues, ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2, int turn){
+    private static void turnPrintEvents(ArrayList<Integer> rollingDice, ArrayList<Integer> currentDiceValues,
+                                        ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2,
+                                       int [] turn){
 
         System.out.println("Current Player: " + playerOneName);
-        System.out.println("Dice Roll: " /*+ diceFaceValue*/);
+        System.out.println("Dice Roll: " + rollingDice);
         int die;
         do{
             System.out.println("Input a Die you want to keep. To not take any Die, type 0.");
             Scanner in = new Scanner(System.in);
             System.out.print("Enter Dice 1-6: ");
             die = in.nextInt();
-            for(int i = 0; i<RollingDice.size(); i++){
-                int RollingIndex = RollingDice.get(i);
+            for(int i = 0; i<rollingDice.size(); i++){
+                int RollingIndex = rollingDice.get(i);
                 if(die == RollingIndex){
-                    CurrentDiceValues.add(RollingDice.get(i));
-                    RollingDice.remove(i);
-                    System.out.println("Rolling Dice: " + RollingDice);
-                    System.out.println("Current chosen Dice: " + CurrentDiceValues);
+                    currentDiceValues.add(rollingDice.get(i));
+                    rollingDice.remove(i);
+                    System.out.println("Rolling Dice: " + rollingDice);
+                    System.out.println("Current chosen Dice: " + currentDiceValues);
                 }
             }
         }while(die != 0);
         //calculate score
         //System.out.println(Score.turnScore);
-        if(turn == 1){
-            for(int i =0; i<CurrentDiceValues.size(); i++){
-                previousDiceSet1.add(CurrentDiceValues.get(i));
+        if(turn.length == 1){
+            for(int i =0; i<currentDiceValues.size(); i++){
+                previousDiceSet1.add(currentDiceValues.get(i));
             }
-            CurrentDiceValues.clear();
-        }else if(turn == 2){
-            for(int i =0; i<CurrentDiceValues.size(); i++){
-                previousDiceSet2.add(CurrentDiceValues.get(i));
+            currentDiceValues.clear();
+        }else if(turn.length == 2){
+            for(int i =0; i<currentDiceValues.size(); i++){
+                previousDiceSet2.add(currentDiceValues.get(i));
             }
-            CurrentDiceValues.clear();
+            currentDiceValues.clear();
         }
         System.out.println("Previous Dice set 1: " + previousDiceSet1);
         System.out.println("Previous Dice set 2: " + previousDiceSet2);
-        System.out.println("Current Dice set: " + CurrentDiceValues);
+        System.out.println("Current Dice set: " + currentDiceValues);
     }
 
 
@@ -121,7 +134,3 @@ public class Player {
     }
 
 }
-
-
-
-
