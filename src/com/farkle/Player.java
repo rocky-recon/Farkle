@@ -101,63 +101,74 @@ public class Player {
 
         boolean noRepeat;
         do{
+            Scanner rollIn = new Scanner(System.in);
+            System.out.println("Roll the dice? Yes = 1, No = 2 : ");
+            int r = rollIn.nextInt();
             noRepeat = true;
-            System.out.println("Current Player: " + playerOneName);
-            System.out.println("Dice Roll: " + rollingDice);
-            int die;
-            do{
-                System.out.println("Input a Die you want to keep. To not take any Die, type 0.");
-                Scanner in = new Scanner(System.in);
-                System.out.print("Enter Dice 1-6: ");
-                die = in.nextInt();
-                for(int i = 0; i<rollingDice.size(); i++){
-                    int RollingIndex = rollingDice.get(i);
-                    if(die == RollingIndex){
-                        currentDiceValues.add(rollingDice.get(i));
-                        rollingDice.remove(i);
-                        System.out.println("Rolling Dice: " + rollingDice);
-                        System.out.println("Current chosen Dice: " + currentDiceValues);
+            if(r == 1){
+                System.out.println("Current Player: " + playerOneName);
+                System.out.println("Dice Roll: " + rollingDice);
+                int die;
+                do{
+                    System.out.println("Input a Die you want to keep. To not take any Die, type 0.");
+                    Scanner in = new Scanner(System.in);
+                    System.out.print("Enter Dice 1-6: ");
+                    die = in.nextInt();
+                    for(int i = 0; i<rollingDice.size(); i++){
+                        int RollingIndex = rollingDice.get(i);
+                        if(die == RollingIndex){
+                            currentDiceValues.add(rollingDice.get(i));
+                            rollingDice.remove(i);
+                            System.out.println("Rolling Dice: " + rollingDice);
+                            System.out.println("Current chosen Dice: " + currentDiceValues);
+                        }
+                    }
+                }while(die != 0);
+                //calculate score
+                int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
+
+                turnCount++;
+                System.out.println("Turn Count is now: " + turnCount);
+
+                if(turnCount == 1){
+                    for(int i =0; i<currentDiceValues.size(); i++){
+                        previousDiceSet1.add(currentDiceValues.get(i));
+                        noRepeat = false;
+                    }
+                    currentDiceValues.clear();
+                }else if(turnCount == 2){
+                    for(int i =0; i<currentDiceValues.size(); i++){
+                        previousDiceSet2.add(currentDiceValues.get(i));
+                        noRepeat = false;
+                    }
+                    currentDiceValues.clear();
+                }else if(turnCount == 3){
+                    if(turnPrintEventScore == 0){
+                        totalFarkleCount++;
+                        System.out.println("You had 0 Points after three Rolls. You received a Farkle. Your Farkle count is now: " + totalFarkleCount);
+                    }else if(rollingDice.size()==0){
+                        turnCount = 0;
+                        noRepeat = false;
+                        //return to start of turnPrintEvents
+                        //at start, empty all dice arraylists
+                        //recreate Rolling dice
+                    }else{
+                        //System.out.println("Previous Dice set 1: " + previousDiceSet1);
+                        //System.out.println("Previous Dice set 2: " + previousDiceSet2);
+                        System.out.println("Current Dice set: " + currentDiceValues);
+                        return turnPrintEventScore;
                     }
                 }
-            }while(die != 0);
-            //calculate score
-            int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
-
-            turnCount++;
-            System.out.println("Turn Count is now: " + turnCount);
-
-            if(turnCount == 1){
-                for(int i =0; i<currentDiceValues.size(); i++){
-                    previousDiceSet1.add(currentDiceValues.get(i));
-                    noRepeat = false;
-                }
-                currentDiceValues.clear();
-            }else if(turnCount == 2){
-                for(int i =0; i<currentDiceValues.size(); i++){
-                    previousDiceSet2.add(currentDiceValues.get(i));
-                    noRepeat = false;
-                }
-                currentDiceValues.clear();
-            }else if(turnCount == 3){
-                if(turnPrintEventScore == 0){
-                    totalFarkleCount++;
-                    System.out.println("You had 0 Points after three Rolls. You received a Farkle. Your Farkle count is now: " + totalFarkleCount);
-                }else if(rollingDice.size()==0){
-                    turnCount = 0;
-                    noRepeat = false;
-                    //return to start of turnPrintEvents
-                    //at start, empty all dice arraylists
-                    //recreate Rolling dice
-                }else{
-                    //System.out.println("Previous Dice set 1: " + previousDiceSet1);
-                    //System.out.println("Previous Dice set 2: " + previousDiceSet2);
-                    System.out.println("Current Dice set: " + currentDiceValues);
-                    return turnPrintEventScore;
-                }
+                System.out.println("Previous Dice set 1: " + previousDiceSet1);
+                System.out.println("Previous Dice set 2: " + previousDiceSet2);
+                System.out.println("Current Dice set: " + currentDiceValues);
+            }else{
+                System.out.println("You have chosen not to roll again.");
+                int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
+                System.out.print("Turned Ended. Turn points: " + String.valueOf(turnPrintEventScore));
             }
-            System.out.println("Previous Dice set 1: " + previousDiceSet1);
-            System.out.println("Previous Dice set 2: " + previousDiceSet2);
-            System.out.println("Current Dice set: " + currentDiceValues);
+
+
 
 
 
