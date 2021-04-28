@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Player {
     static private String playerOneName;
     static private String playerTwoName;
+    int turnCount = 0;
     public static void main(String[] args) {
         //This is a placeholder ArrayList. Needs to be replaced with the Actual Random Dice ArrayList.
         ArrayList<Integer> rollingDice = new ArrayList<>(6);
@@ -23,6 +24,8 @@ public class Player {
         startGame();
         turnPrintEvents( rollingDice, currentDiceValues, previousDiceSet1, previousDiceSet2, turn);
         System.out.println("Turn Score: " + Score.turnScore);
+        endGame();
+
     }
     // this is called to have player enter game type, name, and score.
     private static void startGame() {
@@ -76,7 +79,7 @@ public class Player {
         }
     }
 
-    private static void turnPrintEvents(ArrayList<Integer> rollingDice, ArrayList<Integer> currentDiceValues, ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2, int turn){
+    private static void turnPrintEvents(ArrayList<Integer> rollingDice, ArrayList<Integer> currentDiceValues, ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2, int turnCount){
 
         System.out.println("Current Player: " + playerOneName);
         System.out.println("Dice Roll: " + rollingDice);
