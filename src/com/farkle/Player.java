@@ -7,7 +7,17 @@ import java.util.Scanner;
 public class Player {
     static private String playerOneName;
     static private String playerTwoName;
+
     static private int selectedScore;
+    int turnCount = 0;
+    ArrayList<Integer> currentDiceValues = new ArrayList<>();
+    ArrayList<Integer> rollingDice = new ArrayList<>(6);
+    ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
+    ArrayList<Integer> previousDiceSet1 = new ArrayList<>();
+    ArrayList<Integer> previousDiceSet2 = new ArrayList<>();
+    Score score = new Score(currentDiceValues, previousDiceSets);
+    static int turnPrintEventScore = 0;
+
     public static void main(String[] args) {
         //This is a placeholder ArrayList. Needs to be replaced with the Actual Random Dice ArrayList.
         ArrayList<Integer> rollingDice = new ArrayList<>(6);
@@ -19,12 +29,15 @@ public class Player {
         rollingDice.add(6);
         ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
         ArrayList<Integer> currentDiceValues = new ArrayList<>();
-        int turn = 1;
+        int turnCount = 1;
         ArrayList<Integer> previousDiceSet1 = new ArrayList<>();
         ArrayList<Integer> previousDiceSet2 = new ArrayList<>();
+        Score score = new Score(currentDiceValues, previousDiceSets);
         startGame();
-        turnPrintEvents( rollingDice, currentDiceValues, previousDiceSet1, previousDiceSet2, turn);
-        System.out.println("Turn Score: " + Score.turnScore);
+        System.out.println(turnPrintEvents(score, rollingDice, currentDiceValues, previousDiceSet1, previousDiceSet2, previousDiceSets, turnCount));
+        //System.out.println("Turn Score: " + score.scoreCalculator(currentDiceValues, previousDiceSets));
+        endGame();
+
     }
     // this is called to have player enter game type, name, and score.
     private static void startGame() {
@@ -77,7 +90,7 @@ public class Player {
         }
     }
 
-    private static void turnPrintEvents(ArrayList<Integer> rollingDice, ArrayList<Integer> currentDiceValues, ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2, int turn){
+    private static int turnPrintEvents(Score score, ArrayList<Integer> rollingDice, ArrayList<Integer> currentDiceValues, ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2, ArrayList<ArrayList<Integer>> previousDiceSets, int turnCount){
 
         System.out.println("Current Player: " + playerOneName);
         System.out.println("Dice Roll: " + rollingDice);
@@ -98,13 +111,15 @@ public class Player {
             }
         }while(die != 0);
         //calculate score
+        int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
+
         //System.out.println(Score.turnScore);
-        if(turn == 1){
+        if(turnCount == 1){
             for(int i =0; i<currentDiceValues.size(); i++){
                 previousDiceSet1.add(currentDiceValues.get(i));
             }
             currentDiceValues.clear();
-        }else if(turn == 2){
+        }else if(turnCount == 2){
             for(int i =0; i<currentDiceValues.size(); i++){
                 previousDiceSet2.add(currentDiceValues.get(i));
             }
@@ -113,19 +128,21 @@ public class Player {
         System.out.println("Previous Dice set 1: " + previousDiceSet1);
         System.out.println("Previous Dice set 2: " + previousDiceSet2);
         System.out.println("Current Dice set: " + currentDiceValues);
+
+        return turnPrintEventScore;
     }
 
 
     private static void endGame() {
-        int n = 3;
-        ArrayList<Integer> farkleList = new ArrayList<Integer>(n);
-        if (Score.turnScore == 0){
-            for (int i = 1; i <= n ; i++){
-                farkleList.add(i);
-            }if (farkleList.size() == 3) {
-                System.out.println("Three Farkles have been reached. You lose.");
-            }
-        } else if ()
+//        int n = 3;
+//        ArrayList<Integer> farkleList = new ArrayList<Integer>(n);
+//        if (Score.turnScore == 0){
+//            for (int i = 1; i <= n ; i++){
+//                farkleList.add(i);
+//            }if (farkleList.size() == 3) {
+//                System.out.println("Three Farkles have been reached. You lose.");
+//            }
+//        } else if ()
 
 
 

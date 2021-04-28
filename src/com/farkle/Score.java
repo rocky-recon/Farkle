@@ -12,7 +12,7 @@ public class Score {
     ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
 
 
-    Score(ArrayList<Integer> currentDiceValues, ArrayList<ArrayList<Integer>> previousDiceSets){
+    public Score(ArrayList<Integer> currentDiceValues, ArrayList<ArrayList<Integer>> previousDiceSets){
         this.currentDiceValues = currentDiceValues;
         this.previousDiceSets = previousDiceSets;
 
