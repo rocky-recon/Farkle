@@ -8,7 +8,7 @@ public class Player {
     static private String playerTwoName;
     static private int selectedScore;
     static int turnCount = 0;
-    int totalScore;
+    static int totalScore;
     static private int totalFarkleCount = 0;
     ArrayList<Integer> currentDiceValues = new ArrayList<>();
     ArrayList<Integer> rollingDice = new ArrayList<>(6);
@@ -34,7 +34,8 @@ public class Player {
         ArrayList<Integer> previousDiceSet2 = new ArrayList<>();
         Score score = new Score(currentDiceValues, previousDiceSets);
         startGame();
-        System.out.println(turnPrintEvents(score, rolledDice(), currentDiceValues, previousDiceSet1, previousDiceSet2, previousDiceSets, turnCount, totalFarkleCount));
+        System.out.println(turnPrintEvents(score, rolledDice(), currentDiceValues, previousDiceSet1,
+                previousDiceSet2, previousDiceSets, turnCount, totalFarkleCount, totalScore));
         //System.out.println("Turn Score: " + score.scoreCalculator(currentDiceValues, previousDiceSets));
         endGame();
     }
@@ -102,7 +103,7 @@ public class Player {
 
     private static int turnPrintEvents(Score score, ArrayList<Integer> rollingDice, ArrayList<Integer> currentDiceValues,
                                        ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2,
-                                       ArrayList<ArrayList<Integer>> previousDiceSets, int turnCount, int totalFarkleCount){
+                                       ArrayList<ArrayList<Integer>> previousDiceSets, int turnCount, int totalFarkleCount, int totalScore){
 
         boolean noRepeat;
         do{
@@ -117,7 +118,7 @@ public class Player {
                 do{
                     System.out.println("Input a Die you want to keep. To not take any Die, type 0.");
                     Scanner in = new Scanner(System.in);
-                    System.out.print("Enter Dice 1-6: ");
+                    System.out.print("Pick what dice number : ");
                     die = in.nextInt();
                     for(int i = 0; i<rollingDice.size(); i++){
                         int RollingIndex = rollingDice.get(i);
