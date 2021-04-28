@@ -10,7 +10,7 @@ public class Player {
     static private int selectedScore;
     static int turnCount = 0;
     int totalScore;
-     int  totalFarkleCount;
+    static private int totalFarkleCount = 0;
     ArrayList<Integer> currentDiceValues = new ArrayList<>();
     ArrayList<Integer> rollingDice = new ArrayList<>(6);
     ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
@@ -20,6 +20,9 @@ public class Player {
     static int turnPrintEventScore = 0;
 
     public static void main(String[] args) {
+        interact();
+    }
+    private static void interact(){
         //This is a placeholder ArrayList. Needs to be replaced with the Actual Random Dice ArrayList.
         ArrayList<Integer> rollingDice = new ArrayList<>(6);
         rollingDice.add(1);
@@ -39,8 +42,8 @@ public class Player {
         System.out.println(turnPrintEvents(score, rollingDice, currentDiceValues, previousDiceSet1, previousDiceSet2, previousDiceSets, turnCount, totalFarkleCount));
         //System.out.println("Turn Score: " + score.scoreCalculator(currentDiceValues, previousDiceSets));
         endGame();
-
     }
+
     // this is called to have player enter game type, name, and score.
     private static void startGame() {
        Scanner in = new Scanner(System.in);
@@ -165,22 +168,22 @@ public class Player {
 
 
     private static void endGame() {
-        int n = 3;
-        ArrayList<Integer> farkleList = new ArrayList<Integer>(n);
-        if (Score.turnScore == 0){
-            for (int i = 1; i <= n ; i++){
-                farkleList.add(i);
-            }if (farkleList.size() == 3) {
-                System.out.println("Three Farkles have been reached. You lose.");
-
+        if (totalFarkleCount == 3) {
+            System.out.println("You reached three Farkles. You lose.");
+            Scanner in = new Scanner(System.in);
+            System.out.print("Would you like to replay?: 1.Yes 2.No");
+            int replay = in.nextInt();
+            if (replay == 1) {
+                interact();
+            } else {
+                System.out.println("Thank you for playing!");
             }
-        } else if ( )
-
-
-
-
-
         }
+    }
+
+
+
+
     }
 
 
