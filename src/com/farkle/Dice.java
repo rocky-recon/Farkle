@@ -21,6 +21,7 @@ public class Dice {
         rollingDice.add(die4);
         rollingDice.add(die5);
         rollingDice.add(die5);
+        rollingDice.add(die6);
         System.out.println("Your dice values are " + rollingDice);
     }
 }
