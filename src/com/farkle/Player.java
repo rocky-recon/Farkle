@@ -40,15 +40,15 @@ public class Player {
 
 //         User Input: name.
         Scanner in = new Scanner(System.in);
-        System.out.print("[  DEBUG ]: Enter your name: ");
+        System.out.print("Enter your name: ");
         playerOneName = in.nextLine();
-        System.out.println("[  DEBUG ]: Player name is: " + playerOneName);
+        System.out.println("Player name is: " + playerOneName);
 
 //         User Input: score.
         Scanner user_score = new Scanner(System.in);
-        System.out.print("[  DEBUG ]: Choose the score to try for: ");
+        System.out.print("Choose the score to try for: ");
         int chosenScore = user_score.nextInt();
-        System.out.println("[  DEBUG ]: You chose: " + chosenScore);
+        System.out.println("You chose: " + chosenScore);
 
 //         Call the turnPrintEvents method.
         System.out.println(turnPrintEvents(
@@ -131,14 +131,16 @@ public class Player {
                     System.out.print(  "Pick what dice number to add to our score: ");
                     dice = in.nextInt();
                     System.out.println("UserInput( 'dice' ): " + dice);
+                    boolean diceFound = false;
 
 //                     Inspect the rollingDice array.
                     for (int i = 0; i < rollingDice.size(); i++) {
                         int RollingIndex = rollingDice.get(i);
 
-                        if(dice == RollingIndex) {
+                        if(dice == RollingIndex && diceFound ==false) {
 //                             Set currentDiceValues.
                             currentDiceValues.add(rollingDice.get(i));
+                            diceFound = true;
                         }
                     }
 
@@ -288,8 +290,8 @@ public class Player {
     }
 //          Establish how to win game.
     private static void winGame() {
-        System.out.println("[  DEBUG ]: Congratulations! You win!");
-        System.out.println("[  DEBUG ]: Thank you for playing!");
+        System.out.println("Congratulations! You win!");
+        System.out.println("Thank you for playing!");
         System.exit(0);
     }
 //          Establish how to end game.
