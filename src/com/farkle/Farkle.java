@@ -7,7 +7,7 @@ public class Farkle {
     public static void main(String[] args) {
         int totalScore;
         boolean farkle;
-        //int totalFarkleCount;
+        int totalFarkleCount;
         int rollsLeft;
         String playerName;
         Map<String, Integer> diceHeldPerTurn = new HashMap<String, Integer>();
@@ -26,3 +26,8 @@ public class Farkle {
 
     }
 }
+
+
+
+
+
