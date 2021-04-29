@@ -12,6 +12,7 @@ public class Player {
     static int totalScore;
     static private int totalFarkleCount = 0;
     static private int chosenScore = 0;
+    Random die = new Random();
     ArrayList<Integer> currentDiceValues = new ArrayList<>();
     ArrayList<Integer> rollingDice = new ArrayList<>(6);
     ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
@@ -119,34 +120,37 @@ public class Player {
                                        ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2,
                                        ArrayList<ArrayList<Integer>> previousDiceSets, int turnCount, int totalFarkleCount, int totalScore){
 
+
         boolean noRepeat;
         do{
+            Random die = new Random();
             Scanner rollIn = new Scanner(System.in);
             System.out.println("Roll the dice? Yes = 1, No = 2 : ");
             int r = rollIn.nextInt();
             noRepeat = true;
             if(r == 1){
+                rolledDice();
                 if(totalFarkleCount == 3){
                     return totalFarkleCount;
                 }
                 System.out.println("Current Player: " + playerOneName);
                 System.out.println("Dice Roll: " + rollingDice);
-                int die;
+                int dice;
                 do{
                     System.out.println("Input a Die you want to keep. To not take any Die, type 0.");
                     Scanner in = new Scanner(System.in);
                     System.out.print("Pick what dice number : ");
-                    die = in.nextInt();
+                    dice = in.nextInt();
                     for(int i = 0; i<rollingDice.size(); i++){
                         int RollingIndex = rollingDice.get(i);
-                        if(die == RollingIndex){
+                        if(dice == RollingIndex){
                             currentDiceValues.add(rollingDice.get(i));
                             rollingDice.remove(i);
                             System.out.println("Rolling Dice: " + rollingDice);
                             System.out.println("Current chosen Dice: " + currentDiceValues);
                         }
                     }
-                }while(die != 0);
+                }while(dice != 0);
                 //calculate score
                 int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
                 totalScore+= turnPrintEventScore;
@@ -154,7 +158,7 @@ public class Player {
                     return totalScore;
                 }
                 turnCount++;
-                System.out.println("Turn Count is now: " + turnCount);
+                System.out.println("Roll Count is now: " + turnCount);
 
                 if(turnCount == 1){
                     for(int i =0; i<currentDiceValues.size(); i++){
