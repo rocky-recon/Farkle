@@ -224,7 +224,7 @@ public class Player {
         }
     }
     //          Add scores
-    private static Integer addToScore(ArrayList<Integer> currentDiceValues) {
+    public static Integer addToScore(ArrayList<Integer> currentDiceValues) {
         for (int i = 0; i < currentDiceValues.size(); i++) {
             if (currentDiceValues.size() == 1) {
 
