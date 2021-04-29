@@ -19,6 +19,7 @@ public class Player {
     static int turnPrintEventScore = 0;
 
     public static void main(String[] args) {
+
         interact();
     }
 
@@ -132,7 +133,10 @@ public class Player {
                 }while(die != 0);
                 //calculate score
                 int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
-
+                totalScore+= turnPrintEventScore
+//                if(){
+//
+//                }
                 turnCount++;
                 System.out.println("Turn Count is now: " + turnCount);
 
