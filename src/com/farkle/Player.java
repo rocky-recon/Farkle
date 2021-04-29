@@ -126,6 +126,9 @@ public class Player {
             int r = rollIn.nextInt();
             noRepeat = true;
             if(r == 1){
+                if(totalFarkleCount == 3){
+                    return totalFarkleCount;
+                }
                 System.out.println("Current Player: " + playerOneName);
                 System.out.println("Dice Roll: " + rollingDice);
                 int die;
@@ -147,9 +150,9 @@ public class Player {
                 //calculate score
                 int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
                 totalScore+= turnPrintEventScore;
-//                if(){
-//
-//                }
+                if(totalScore>= chosenScore){
+                    return totalScore;
+                }
                 turnCount++;
                 System.out.println("Turn Count is now: " + turnCount);
 
@@ -168,6 +171,7 @@ public class Player {
                 }else if(turnCount == 3){
                     if(turnPrintEventScore == 0){
                         totalFarkleCount++;
+
                         System.out.println("You had 0 Points after three Rolls. You received a Farkle. Your Farkle count is now: " + totalFarkleCount);
                     }else if(rollingDice.size()==0){
                         turnCount = 0;
