@@ -1,6 +1,7 @@
 package com.farkle;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
@@ -10,6 +11,7 @@ public class Player {
     static int turnCount = 0;
     static int totalScore;
     static private int totalFarkleCount = 0;
+    static private int chosenScore = 0;
     ArrayList<Integer> currentDiceValues = new ArrayList<>();
     ArrayList<Integer> rollingDice = new ArrayList<>(6);
     ArrayList<ArrayList<Integer>> previousDiceSets = new ArrayList<>();
@@ -144,7 +146,7 @@ public class Player {
                 }while(die != 0);
                 //calculate score
                 int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
-                totalScore+= turnPrintEventScore
+                totalScore+= turnPrintEventScore;
 //                if(){
 //
 //                }
