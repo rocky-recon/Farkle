@@ -184,10 +184,14 @@ public class Player {
                         //at start, empty all dice arraylists
                         //recreate Rolling dice
                     }else{
+                        //you had a score, but no rolls left. start a new turn. Turn score is set to 0.
                         //System.out.println("Previous Dice set 1: " + previousDiceSet1);
                         //System.out.println("Previous Dice set 2: " + previousDiceSet2);
                         System.out.println("Current Dice set: " + currentDiceValues);
-                        return turnPrintEventScore;
+                        System.out.println("you had a score, but no rolls left. start a new turn. Turn score is set to 0.");
+                        noRepeat = false;
+                        turnPrintEventScore = 0;
+                        //return turnPrintEventScore;
                     }
                 }
                 System.out.println("Previous Dice set 1: " + previousDiceSet1);
