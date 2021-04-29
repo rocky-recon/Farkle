@@ -173,12 +173,14 @@ public class Player {
                         previousDiceSet1.add(currentDiceValues.get(i));
                     }
                     noRepeat = false;
+                    System.out.println("Score so far this turn: " + turnPrintEventScore);
                     currentDiceValues.clear();
                 }else if(turnCount == 2){
                     for(int i =0; i<currentDiceValues.size(); i++){
                         previousDiceSet2.add(currentDiceValues.get(i));
                     }
                     noRepeat = false;
+                    System.out.println("Score so far this turn: " + turnPrintEventScore);
                     currentDiceValues.clear();
                 }else if(turnCount == 3){
                     if(turnPrintEventScore == 0){
@@ -203,7 +205,7 @@ public class Player {
                         //System.out.println("Previous Dice set 2: " + previousDiceSet2);
                         System.out.println("Current Dice set: " + currentDiceValues);
                         System.out.println("you had a score, but no rolls left. start a new turn. Turn score is set to 0.");
-                        System.out.println("Total Score: " + totalScore + "Goal: " + chosenScore);
+                        System.out.println("Total Score: " + totalScore + " Goal: " + chosenScore);
                         totalFarkleCount++;
                         System.out.println("Farkles: " + totalFarkleCount);
                         if(totalFarkleCount==3){
@@ -213,11 +215,14 @@ public class Player {
                         turnPrintEventScore = 0;
                         //return turnPrintEventScore;
                     }
+                    previousDiceSet1.clear();
+                    previousDiceSet2.clear();
                 }
                 System.out.println("Previous Dice set 1: " + previousDiceSet1);
                 System.out.println("Previous Dice set 2: " + previousDiceSet2);
                 System.out.println("Current Dice set: " + currentDiceValues);
-                System.out.println("Score so far this turn: " + turnPrintEventScore);
+
+                System.out.println("Score so far this game: " + totalScore + " Goal: " + chosenScore);
                 noRepeat = false;
             }else{
                 System.out.println("You have chosen not to roll again.");
