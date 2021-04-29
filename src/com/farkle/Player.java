@@ -95,13 +95,21 @@ public class Player {
         } return chosenScore;
     }
     private static ArrayList<Integer> rolledDice(){
-        ArrayList<Integer> rollingDice = new ArrayList<>(6);
-        rollingDice.add(1);
-        rollingDice.add(1);
-        rollingDice.add(1);
-        rollingDice.add(4);
-        rollingDice.add(5);
-        rollingDice.add(6);
+        ArrayList<Integer> rollingDice = new ArrayList<>();
+        Random die = new Random();
+        int die1 = die.nextInt(6)+1;
+        int die2 = die.nextInt(6)+1;
+        int die3 = die.nextInt(6)+1;
+        int die4 = die.nextInt(6)+1;
+        int die5 = die.nextInt(6)+1;
+        int die6 = die.nextInt(6)+1;
+
+        rollingDice.add(die1);
+        rollingDice.add(die2);
+        rollingDice.add(die3);
+        rollingDice.add(die4);
+        rollingDice.add(die5);
+        rollingDice.add(die6);
         return rollingDice;
     }
 
