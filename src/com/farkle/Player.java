@@ -78,17 +78,21 @@ public class Player {
         System.out.println("Players are : " + playerOneName + " and " + playerTwoName);
     }
     // player or players select score they must reach in order to win, survival mode has no score to reach in order to win.
-    private static void maxScore() {
+private static void maxScore() {
         Scanner in = new Scanner(System.in);
         System.out.print("Select points need to win: 1: 5,000 2: 10,000 3: 15,000");
         selectedScore = in.nextInt();
         if ( selectedScore == 1){
+            int scoreChosen = 5000;
             System.out.println("You selected 5,000");
         } else if (selectedScore == 2){
+            int scoreChosen = 10000;
             System.out.println("You selected 10,000");
         } else if (selectedScore == 3){
+            int scoreChosen = 15000;
             System.out.println("You selected 15,000");
         }
+}
     }
     private static ArrayList<Integer> rolledDice(){
         ArrayList<Integer> rollingDice = new ArrayList<>(6);
