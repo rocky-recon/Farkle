@@ -39,8 +39,8 @@ public class Player {
         ArrayList<Integer> previousDiceSet2 = new ArrayList<>();
         Score score = new Score(currentDiceValues, previousDiceSets);
         startGame();
-        System.out.println(turnPrintEvents(score, rolledDice(die), currentDiceValues, previousDiceSet1,
-                previousDiceSet2, previousDiceSets, turnCount, totalFarkleCount, totalScore, die));
+        turnPrintEvents(score, rolledDice(die), currentDiceValues, previousDiceSet1,
+                previousDiceSet2, previousDiceSets, turnCount, totalFarkleCount, totalScore, die, turnPrintEventScore);
         //System.out.println("Turn Score: " + score.scoreCalculator(currentDiceValues, previousDiceSets));
         endGame(totalFarkleCount);
     }
@@ -121,21 +121,25 @@ public class Player {
     private static int turnPrintEvents(Score score, ArrayList<Integer> rollingDice, ArrayList<Integer> currentDiceValues,
                                        ArrayList<Integer> previousDiceSet1, ArrayList<Integer> previousDiceSet2,
                                        ArrayList<ArrayList<Integer>> previousDiceSets, int turnCount, int totalFarkleCount,
-                                       int totalScore, Random die){
+                                       int totalScore, Random die, int turnPrintEventScore){
 
 
         boolean noRepeat;
         do{
+
             die = new Random();
+            int seedInteger = 1;
+            seedInteger= seedInteger++;
+            die.setSeed(seedInteger);
+            rolledDice(die);
+            //turnPrintEventScore = 0;
+
             Scanner rollIn = new Scanner(System.in);
             System.out.println("Roll the dice? Yes = 1, No = 2 : ");
             int r = rollIn.nextInt();
             noRepeat = true;
             if(r == 1){
-                int seedInteger = 1;
-                seedInteger= seedInteger++;
-                die.setSeed(seedInteger);
-                rolledDice(die);
+
                 if(totalFarkleCount == 3){
                     return totalFarkleCount;
                 }
@@ -160,7 +164,7 @@ public class Player {
                     }
                 }while(dice != 0);
                 //calculate score
-                int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
+                turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
                 totalScore+= turnPrintEventScore;
                 if(totalScore>= chosenScore){
                     return totalScore;
@@ -184,7 +188,7 @@ public class Player {
                     currentDiceValues.clear();
                 }else if(turnCount == 3){
                     if(turnPrintEventScore == 0){
-                        System.out.println("You reached turn Three with " + turnPrintEventScore + " points. You get a Farkle.");
+                        System.out.println("You reached turn Three with 0 points. You get a Farkle.");
                         turnCount= 0;
                         totalFarkleCount++;
                         System.out.println("Farkles: " + totalFarkleCount);
@@ -192,7 +196,7 @@ public class Player {
                             return totalFarkleCount;
                         }
 
-                        System.out.println("You had 0 Points after three Rolls. You received a Farkle. Your Farkle count is now: " + totalFarkleCount);
+                        System.out.println("Farkle! You had 0 Points after three Rolls. Your Farkle count is now: " + totalFarkleCount);
                     }else if(rollingDice.size()==0){
                         turnCount = 0;
                         noRepeat = false;
@@ -204,7 +208,7 @@ public class Player {
                         //System.out.println("Previous Dice set 1: " + previousDiceSet1);
                         //System.out.println("Previous Dice set 2: " + previousDiceSet2);
                         System.out.println("Current Dice set: " + currentDiceValues);
-                        System.out.println("you had a score, but no rolls left. start a new turn. Turn score is set to 0.");
+                        System.out.println("Farkle! you had a score, but no rolls left. start a new turn. Turn score is set to 0.");
                         System.out.println("Total Score: " + totalScore + " Goal: " + chosenScore);
                         totalFarkleCount++;
                         System.out.println("Farkles: " + totalFarkleCount);
@@ -223,18 +227,23 @@ public class Player {
                 System.out.println("Current Dice set: " + currentDiceValues);
 
                 System.out.println("Score so far this game: " + totalScore + " Goal: " + chosenScore);
+
                 noRepeat = false;
             }else{
-                System.out.println("You have chosen not to roll again.");
-                int turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
-                System.out.print("Turned Ended. Turn points: " + String.valueOf(turnPrintEventScore));
+                turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
+                System.out.println("You have chosen not to roll again and end your turn. Turn Score: " + turnPrintEventScore);
+                totalScore=+ turnPrintEventScore;
+                System.out.println("Total Score: " + totalScore);
+                turnCount = 0;
+                noRepeat = false;
             }
 
 
+//            turnPrintEventScore = score.scoreCalculator(currentDiceValues, previousDiceSets);
+//            totalScore=+turnPrintEventScore;
+//            System.out.println("Total points: " + totalScore);
 
-
-
-
+            turnPrintEventScore = 0;
         }while(noRepeat == false);
         return turnPrintEventScore;
     }
