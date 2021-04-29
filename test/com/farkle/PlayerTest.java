@@ -2,7 +2,7 @@ package com.farkle;
 
 import org.junit.Test;
 
-public class ScoreTest {
+public class PlayerTest {
     //  @Test
 //        public void scoreCalculatorSixOfAKind() {
 //            int turnScore = 0;
