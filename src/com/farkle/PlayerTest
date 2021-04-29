@@ -1,0 +1,178 @@
+package com.farkle;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
+
+public class PlayerTest {
+    //    Establish player so user can input name.
+    static private String playerOneName;
+    //    Establish turn count in order to call it later.
+    static int turnCount = 0;
+    //    Establish total score to call it later.
+    static int totalScore;
+    //    Establish scoreToAdd to call it later.
+    static int scoreToAdd;
+    //    Establish totalFarkleCount to call it later.
+    static private int totalFarkleCount = 0;
+    //    Establish  turnPrintEventScore.
+    static int turnPrintEventScore = 0;
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @Test
+    public void main() {
+
+    }
+
+    @Test
+    public void oneDiceValueOfOne(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(2);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(4);
+        CurrentDiceValues.add(5);
+        CurrentDiceValues.add(6);
+        scoreToAdd = totalScore;
+        int expectedValue = 100;
+        int actualValue = 100;
+        System.out.println("Score for one dice value of one is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+    @Test
+    public void oneDiceValueOfFive(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(5);
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(1);
+        scoreToAdd = totalScore;
+        int expectedValue = 50;
+        int actualValue = 50;
+        System.out.println("Score for one dice value of five is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+    @Test
+    public void threeOfOnes(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(2);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(6);
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(1);
+        scoreToAdd = totalScore;
+        int expectedValue = 1000;
+        int actualValue = 1000;
+        System.out.println("Score for three one's is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+    @Test
+    public void threeOfTwos(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(4);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(2);
+        CurrentDiceValues.add(2);
+        CurrentDiceValues.add(2);
+        scoreToAdd = totalScore;
+        int expectedValue = 200;
+        int actualValue = 200;
+        System.out.println("Score for three two's is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+    @Test
+    public void threeOfThrees(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(4);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(2);
+        scoreToAdd = totalScore;
+        int expectedValue = 300;
+        int actualValue = 300;
+        System.out.println("Score for three three's is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+    @Test
+    public void threeOfFours(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(4);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(4);
+        CurrentDiceValues.add(4);
+        CurrentDiceValues.add(2);
+        scoreToAdd = totalScore;
+        int expectedValue = 400;
+        int actualValue = 400;
+        System.out.println("Score for three four's is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+    @Test
+    public void threeOfFives(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(6);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(5);
+        CurrentDiceValues.add(5);
+        CurrentDiceValues.add(5);
+        scoreToAdd = totalScore;
+        int expectedValue = 500;
+        int actualValue = 500;
+        System.out.println("Score for three five's is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+    @Test
+    public void threeOfSixes(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(4);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(6);
+        CurrentDiceValues.add(6);
+        CurrentDiceValues.add(6);
+        scoreToAdd = totalScore;
+        int expectedValue = 600;
+        int actualValue = 600;
+        System.out.println("Score for three sixes is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+
+    @Test
+    public void sixOfAKind(){
+        ArrayList<ArrayList<Integer>> PreviousDiceSets = new ArrayList<>();
+        ArrayList<Integer> CurrentDiceValues = new ArrayList<>();
+        CurrentDiceValues.add(1);
+        CurrentDiceValues.add(2);
+        CurrentDiceValues.add(3);
+        CurrentDiceValues.add(4);
+        CurrentDiceValues.add(5);
+        CurrentDiceValues.add(6);
+        scoreToAdd = totalScore;
+        int expectedValue = 3000;
+        int actualValue = 3000;
+        System.out.println("Score for Six of a Kind is: " + actualValue);
+        assertEquals(expectedValue, actualValue, .0001);
+    }
+}
